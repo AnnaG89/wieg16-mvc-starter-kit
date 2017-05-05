@@ -27,7 +27,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Galleri Gustafsson</a>
+            <a class="navbar-brand" href="/">Galleri Gustafsson</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <form class="navbar-form navbar-right">
@@ -46,52 +46,32 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
-        <h1>Hello, world!</h1>
-        <div class="container">
-            <!-- Example row of columns -->
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Namn</th>
-                            <th>Födelseår</th>
-                            <th>Stad</th>
-                            <th>Bild</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        foreach ($allArtists as $value) {
-                            echo "<tr>
-                                <td>" . $value['id'] . "</td>
-                                <td>" . $value['name'] . "</td>
-                                <td>" . $value['birthyear'] . "</td>
-                                <td>" . $value['city'] . "</td>
-                                <td><img src=" . $value['image_url'] . "/></td>
-                                </tr>";
-                        };
-                        ?>
-                        </tbody>
-                    </table>
+        <h1>Lägg till en konstnär!</h1>
+        <div>
+            <form action="/create-artist" method="post">
+                <div class="form-group">
+                    <label>Namn:</label>
+                    <input type="text" name="fname" class="form-control">
                 </div>
-            </div>
+                <div class="form-group">
+                    <label>Födelseår: </label>
+                    <input type="text" name="fbirthyear" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Stad: </label>
+                    <input type="text" name="fcity" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-default">Lägg till</button>
+            </form>
         </div>
-
-        <p><a class="btn btn-primary btn-lg" href="/create" role="button">Lägg till konstnär</a></p>
     </div>
 </div>
-
-<div class="container">
 
     <hr>
 
     <footer>
         <p>&copy; 2016 Company, Inc.</p>
     </footer>
-</div> <!-- /container -->
-
 
 <!-- Bootstrap core JavaScript
 ================================================== -->

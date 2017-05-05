@@ -15,7 +15,10 @@ $config = require $baseDir. '/config/config.php';
 
 // Normalisera url-sökvägar
 $path = function($uri) {
-	return ($uri == '/') ? $uri : rtrim($uri, '/');
+    $uri = ($uri == '/') ? $uri : rtrim($uri, '/');
+    $uri = explode('?', $uri);
+    $uri = array_shift($uri);
+	return $uri;
 };
 
 $dsn = "mysql:host=".$config['host'].";dbname=".$config['db'].";charset=".$config['charset'];
@@ -24,38 +27,41 @@ $pdo = new PDO($dsn, $config['user'], $config['password'], $config['options']);
 //$db = new Database($dsn, $config['user'], $config['password'], $config['options']);
 $db = new Database($pdo);
 $artistModel = new ArtistModel($db);
-$allArtists = $artistModel->getAll();
+/*
+$newArtist = $artistModel->create([
+    'name'=> $_POST['fname'],
+    'birthyear'=> $_POST['fbirthyear'],
+    'city'=> $_POST['fcity']
+]);*/
+
 
 /*
-$artistModel = new ArtistModel($db);
-
-$db->create('Artists', [
-    'name'=> "Anders Bohman",
-    'birthyear'=> 1978,
-    'city'=> "Göteborg"
-]);
-
 $artist = $db->getById('Artists', 1);
 $artists = $db->getAll('Artists');
 
 $artist = $artistModel->getById(1);
 $artists = $artistModel->getAll();
-$artistModel->create([
-    'name'=> "Karin Holmström",
-    'birthyear'=> 1980,
-    'city'=> "Stockholm"
-]);
 */
 
 // Routing
 $url = ($path($_SERVER['REQUEST_URI']));
 switch ($url) {
 	case '/':
+        $allArtists = $artistModel->getAll();
         require $baseDir.'/views/index.php';
 	break;
-    case 'create-artist':
+    case '/create':
+        require $baseDir.'/views/create.php';
+    break;
+    case '/create-artist':
         $artistModel = new ArtistModel($db);
-        break;
+        $newArtist = $artistModel->create([
+            'name'=> $_POST['fname'],
+            'birthyear'=> $_POST['fbirthyear'],
+            'city'=> $_POST['fcity']
+        ]);
+        header('Location: /?id='.$newArtist);
+    break;
 	default:
 		header('HTTP/1.0 404 Not Found');
 		echo 'Page not found';

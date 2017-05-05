@@ -41,9 +41,6 @@ class Database{
         $bindingSql = ':'.implode(',:', $columns);
         //':Anna, :1989, :Trollhättan';
 
-       // $values = array_values($data);
-        //$valuesSql = implode(',', $values);
-
         $sql = "INSERT INTO $table ($columnSql) VALUES ($bindingSql)";
         $stm = $this->pdo->prepare($sql);
 
