@@ -9,7 +9,7 @@
 	<meta name="author" content="">
 	<link rel="icon" href="../../favicon.ico">
 
-	<title>Mitt MVC-projekt</title>
+	<title>Galleri Gustafsson</title>
 
 	<!-- Bootstrap core CSS -->
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Project name</a>
+			<a class="navbar-brand" href="#">Galleri Gustafsson</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<form class="navbar-form navbar-right">
@@ -45,11 +45,41 @@
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
-	<div class="container">
-		<h1>Hello, world!</h1>
-		<p>This is a template for a simple marketing or informational website. It includes a large callout called a
-			jumbotron and three supporting pieces of content. Use it as a starting point to create something more
-			unique.</p>
+    <div class="container">
+        <h1>Hello, world!</h1>
+        <div class="container">
+            <!-- Example row of columns -->
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Namn</th>
+                            <th>Födelseår</th>
+                            <th>Stad</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        foreach ($allArtists as $value) {
+                            echo "<tr>
+                                <td>" . $value['id'] . "</td>
+                                <td>" . $value['name'] . "</td>
+                                <td>" . $value['birthyear'] . "</td>
+                                <td>" . $value['city'] . "</td>
+                                </tr>";
+                        };
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+        </p>
 		<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
 	</div>
 </div>
@@ -58,10 +88,8 @@
 	<!-- Example row of columns -->
 	<div class="row">
 		<div class="col-md-4">
-			<h2>Heading</h2>
-			<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-				condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-				euismod. Donec sed odio dui. </p>
+			<h2>Create</h2>
+			<p> </p>
 			<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
 		</div>
 		<div class="col-md-4">
