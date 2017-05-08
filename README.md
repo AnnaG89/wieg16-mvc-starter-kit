@@ -6,6 +6,7 @@
     * HTML
     * CSS (Bootstrap)
     * PHP (OOP, MVC) 
-#####Anna Gustafsson
+    
+##### Anna Gustafsson
   * anna.gustafsson@medieinstitutet.se
   * https://www.linkedin.com/in/anna-gustafsson-087567b3/
