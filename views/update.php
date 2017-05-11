@@ -21,6 +21,10 @@
                     <label>Stad: </label>
                     <input type="text" name="ucity" class="form-control" value="<? echo $item['city'] ?>">
                 </div>
+                <div class="form-group">
+                    <label>Bild url: </label>
+                    <input type="text" name="uimg" class="form-control" value="<? echo $item['image_url'] ?>">
+                </div>
                 <button type="submit" class="btn btn-default">Lägg till</button>
             </form>
             <? endforeach; ?>

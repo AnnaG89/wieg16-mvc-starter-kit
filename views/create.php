@@ -16,6 +16,10 @@
                     <label>Stad: </label>
                     <input type="text" name="fcity" class="form-control">
                 </div>
+                <div class="form-group">
+                    <label>Bildurl: </label>
+                    <input type="text" name="fimg" class="form-control">
+                </div>
                 <button type="submit" class="btn btn-default">Lägg till</button>
             </form>
         </div>

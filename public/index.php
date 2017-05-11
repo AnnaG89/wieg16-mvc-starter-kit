@@ -49,7 +49,8 @@ switch ($url) {
         $newArtist = $artistModel->create([
             'name' => $_POST['fname'],
             'birthyear' => $_POST['fbirthyear'],
-            'city' => $_POST['fcity']
+            'city' => $_POST['fcity'],
+            'image_url' => $_POST['fimg']
         ]);
         header('Location: /?id=' . $newArtist);
         break;
@@ -67,7 +68,8 @@ switch ($url) {
         $updateArtist = $artistModel->update($_POST['id'], [
             'name' => $_POST['uname'],
             'birthyear' => $_POST['ubirthyear'],
-            'city' => $_POST['ucity']
+            'city' => $_POST['ucity'],
+            'image_url' => $_POST['uimg']
         ]);
         header('Location: /?id=' . $updateArtist);
         break;
