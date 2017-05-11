@@ -23,20 +23,6 @@ abstract class Model {
         $this->db = $db;
     }
 
-    /**
-     * @return integer
-     */
-    public function getId(){
-        return $this->id;
-    }
-
-    /**
-     * @param integer $id
-     */
-    public function setId($id){
-        $this->id = $id;
-    }
-
     /*
      * @param integer $id
      * @return Model
@@ -45,11 +31,27 @@ abstract class Model {
         return $this->db->getById($this->table, $id);
     }
 
+    /**
+     * @return array
+     */
     public function getAll() {
         return $this->db->getAll($this->table);
     }
 
+    /**
+     * @param $data
+     * @return bool|string
+     */
     public function create($data) {
         return $this->db->create($this->table, $data);
+    }
+
+
+    public function update($id, $data) {
+        return $this->db->update($this->table, $id, $data);
+    }
+
+    public function delete($id){
+        return $this->db->delete($this->table, $id);
     }
 }

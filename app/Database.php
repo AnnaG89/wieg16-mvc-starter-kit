@@ -19,10 +19,10 @@ class Database{
     * @return Model
     */
     public function getById($table, $id){
-        $stm = $this->pdo->prepare('SELECT * FROM '.$table.'WHERE id = :id');
-        $stm->bindParam(':id', $id);
+        $stm = $this->pdo->prepare('SELECT * FROM '.$table.' WHERE id = :id');
+        $stm->bindValue(':id', $id);
         $success = $stm->execute();
-        $row = $stm->fetch(PDO::FETCH_ASSOC);
+        $row = $stm->fetchAll(PDO::FETCH_ASSOC);
         return ($success) ? $row: [];
     }
 
@@ -48,27 +48,59 @@ class Database{
             $stm->bindValue(':'.$key, $value);
         }
         $status = $stm->execute();
-        //mellan ? och : är if och mellan : och ; är false.
+        //mellan ? och : är if och mellan : och ; är else.
         return ($status) ? $this->pdo->lastInsertId() : false;
     }
-    /*$data = [
-                    'name'=> "Anders Bohman",
-                    'birthyear'=> 1978,
-                    'city'=> "Göteborg"
-                    ];
-               */
+
+
+//varje nyckel är en column och varje värde är ett värde.
+    //columns före
+    //['name', 'decription'];
+    //columns efter
+    // ['name=:name', 'description=:description'];
+    // ['name=:name,description=:description'];
+
 
     public function update($table, $id, $data) {
         $columns = array_keys($data);
-        $sql = "UPDATE $table SET () WHERE id = :id";
 
+        $columns = array_map(function($item){
+                return $item.'=:'.$item;
+        }, $columns);
+
+        $bindingSql = implode(',', $columns);
+
+        $sql = "UPDATE $table SET $bindingSql WHERE id = :id";
+        $stm = $this->pdo->prepare($sql);
+
+        $data['id'] = $id;
+
+        foreach ($data as $key => $value){
+            $stm->bindValue(':'.$key, $value);
+        }
+        $status = $stm->execute();
+        return $status;
     }
+
+    /**
+     * @param $table
+     * @param $id
+     * @return bool
+     */
     public function delete($table, $id)
     {
-        $stm = $this->pdo->prepare('DELETE * FROM ' . $table . 'WHERE id = :id');
+        $stm = $this->pdo->prepare('DELETE FROM '.$table.' WHERE id = :id');
         $stm->bindParam(':id', $id);
         $success = $stm->execute();
-        $row = $stm->fetch(PDO::FETCH_ASSOC);
-        return ($success) ? $row : [];
+        return ($success);
     }
+
+    public function save($table, $data){
+        if (isset($data['id'])){
+            $this->update($table, $data['id'], $data);
+        }else{
+            return $this->create($table, $data);
+        }
+    }
+
 }

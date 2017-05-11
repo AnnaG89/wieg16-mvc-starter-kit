@@ -27,7 +27,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Galleri Gustafsson</a>
+            <a class="navbar-brand" href="/">Galleri Gustafsson</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <form class="navbar-form navbar-right">
@@ -46,56 +46,43 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
-        <h1>Hello, world!</h1>
-        <div class="container">
-            <!-- Example row of columns -->
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Namn</th>
-                            <th>Födelseår</th>
-                            <th>Stad</th>
-                            <th>Bild</th>
-                            <th>Ändra/Ta bort</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        foreach ($allArtists as $value):?>
-                            <tr>
-                                <td><?= $value['id'] ?></td>
-                                <td><?= $value['name'] ?></td>
-                                <td><?= $value['birthyear'] ?></td>
-                                <td><?= $value['city'] ?></td>
-                                <td><img style="max-height: 50px;" src=" <?= $value['image_url'] ?>"/></td>
-                                <td>
-                                    <a class='btn btn-primary btn-sm' href='/delete?id=<?= $value['id'] ?>' role='button'>Ta Bort</a>
-                                    <a class='btn btn-primary btn-sm' href='/update?id=<?= $value['id'] ?>' role='button'>Ändra</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+        <h1>Ändra.</h1>
 
-        <p><a class="btn btn-primary btn-lg" href="/create" role="button">Lägg till konstnär</a></p>
+
+        <?php
+        foreach ($oneArtist as $item):?>
+
+
+        <div>
+            <form action="/update-artist" method="post">
+                <div class="form-group">
+                    <input type="hidden" name="id" class="form-control" value="<?= $_GET['id'] ?>">
+                </div>
+                <div class="form-group">
+                    <label>Namn:</label>
+                    <input type="text" name="uname" class="form-control" value="<? echo $item['name'] ?>">
+                </div>
+                <div class="form-group">
+                    <label>Födelseår: </label>
+                    <input type="text" name="ubirthyear" class="form-control" value="<? echo $item['birthyear'] ?>">
+                </div>
+                <div class="form-group">
+                    <label>Stad: </label>
+                    <input type="text" name="ucity" class="form-control" value="<? echo $item['city'] ?>">
+                </div>
+                <button type="submit" class="btn btn-default">Lägg till</button>
+
+            </form>
+            <? endforeach; ?>
+        </div>
     </div>
 </div>
 
-<div class="container">
+<hr>
 
-    <hr>
-
-    <footer>
-        <p>&copy; 2016 Company, Inc.</p>
-    </footer>
-</div> <!-- /container -->
-
+<footer>
+    <p>&copy; 2016 Company, Inc.</p>
+</footer>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
