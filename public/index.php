@@ -24,17 +24,7 @@ $path = function($uri) {
 $dsn = "mysql:host=".$config['host'].";dbname=".$config['db'].";charset=".$config['charset'];
 $pdo = new PDO($dsn, $config['user'], $config['password'], $config['options']);
 
-//$db = new Database($dsn, $config['user'], $config['password'], $config['options']);
 $db = new Database($pdo);
-
-
-/*
-$artist = $db->getById('Artists', 1);
-$artists = $db->getAll('Artists');
-
-$artist = $artistModel->getById(1);
-$artists = $artistModel->getAll();
-*/
 
 // Routing
 $url = ($path($_SERVER['REQUEST_URI']));
@@ -42,12 +32,16 @@ $artistModel = new ArtistModel($db);
 switch ($url) {
     case '/':
         $allArtists = $artistModel->getAll();
+        require $baseDir . '/views/header.php';
         require $baseDir . '/views/index.php';
+        require $baseDir . '/views/footer.php';
         break;
 
 
     case '/create':
+        require $baseDir . '/views/header.php';
         require $baseDir . '/views/create.php';
+        require $baseDir . '/views/footer.php';
         break;
 
 
@@ -63,7 +57,9 @@ switch ($url) {
 
     case '/update':
         $oneArtist = $artistModel->getById($_GET['id']);
+        require $baseDir . '/views/header.php';
         require $baseDir . '/views/update.php';
+        require $baseDir . '/views/footer.php';
         break;
 
 
