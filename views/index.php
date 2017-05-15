@@ -25,7 +25,7 @@
                                 <td><?= $value['name'] ?></td>
                                 <td><?= $value['birthyear'] ?></td>
                                 <td><?= $value['city'] ?></td>
-                                <td><img style="max-height: 50px;" src=" <?= $value['image_url'] ?>"/></td>
+                                <td><img style="max-height: 60px;" src=" <?= $value['image_url'] ?>"/></td>
                                 <td>
                                     <a class='btn btn-primary btn-sm' href='/delete?id=<?= $value['id'] ?>' role='button'>Ta Bort</a>
                                     <a class='btn btn-primary btn-sm' href='/update?id=<?= $value['id'] ?>' role='button'>Ändra</a>
