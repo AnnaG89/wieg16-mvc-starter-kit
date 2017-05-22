@@ -1,0 +1,62 @@
+@background-color: #EDE6E4;
+@button-color: #A7AD9D;
+@button-border: none;
+@text-color: #756F74;
+
+aside{
+  background-color: @background-color;
+  color: @text-color;
+  padding: 15px;
+}
+.jumbotron{
+  background-color: @background-color;
+  color: @text-color;
+}
+.btn{
+  background-color: @button-color;
+  border: @button-border;
+  color: @text-color;
+}
+
+@circlesize: 50px;
+
+#circle{
+  background-color: #E6B4AC;
+  border-radius: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#small-circle{
+  width: @circlesize;
+  height: @circlesize;
+  #circle
+}
+
+#big-circle{
+  width: @circlesize * 2;
+  height: @circlesize * 2;
+  #circle
+}
+#bigger-circle{
+  width: @circlesize * 3;
+  height: @circlesize * 3;
+  padding-top: 25px;
+  #circle
+}
+.png{
+
+  height: 20px;
+  width: 20px;
+}
+ul{
+  background-color: #E6B4AC;
+  padding: 10px;
+  list-style: none;
+
+  li{
+    background-color: #fff;
+    border-radius: 3px;
+    margin: 10px 0;
+  }
+}

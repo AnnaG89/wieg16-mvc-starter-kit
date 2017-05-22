@@ -1,7 +1,7 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
-        <h1>Hello, world!</h1>
+        <h1>Galleri Gustafsson!</h1>
         <div class="container">
             <!-- Example row of columns -->
             <div class="row">

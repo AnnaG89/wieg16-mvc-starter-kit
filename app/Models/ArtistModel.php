@@ -4,7 +4,7 @@ namespace App\Models;
 
 
 class ArtistModel extends Model {
-    protected $table = 'Artists';
+    protected $table = 'artists';
 
     /*
     protected $name;

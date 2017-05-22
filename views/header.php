@@ -14,10 +14,14 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet/less" type="text/css" href="/css/styles.less" />
+
+    <script src="/js/less.js" type="text/javascript"></script>
+
 </head>
 
 <body>
-
+<!--
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -39,8 +43,10 @@
                     <input type="password" placeholder="Password" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-success">Sign in</button>
-            </form> -->
-        </div><!--/.navbar-collapse -->
+            </form>
+        </div>/.navbar-collapse
     </div>
 </nav>
+
+-->
 </body>
