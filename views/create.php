@@ -3,7 +3,7 @@
     <div class="container">
         <h1>Lägg till en konstnär!</h1>
         <div>
-            <form action="/create-artist" method="post">
+            <form id="create-artist" action="/create-artist" method="post">
                 <div class="form-group">
                     <label>Namn:</label>
                     <input type="text" name="fname" class="form-control">
@@ -20,7 +20,8 @@
                     <label>Bildurl: </label>
                     <input type="text" name="fimg" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-default">Lägg till</button>
+                <p style="display:none;" id="error-message">Du måste fylla i alla formulärfält!</p>
+                <button type="submit" href="index.php" class="btn btn-default">Lägg till</button>
             </form>
         </div>
     </div>

@@ -14,6 +14,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
     <link rel="stylesheet/less" type="text/css" href="/css/styles.less" />
 
     <script src="/js/less.js" type="text/javascript"></script>
