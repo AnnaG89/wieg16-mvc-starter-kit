@@ -29,7 +29,9 @@ $db = new Database($pdo);
 // Routing
 $url = ($path($_SERVER['REQUEST_URI']));
 $artistModel = new ArtistModel($db);
+$artworkModel = new \App\Models\ArtworkModel($db);
 switch ($url) {
+
     case '/':
         $allArtists = $artistModel->getAll();
         require $baseDir . '/views/header.php';
@@ -37,13 +39,11 @@ switch ($url) {
         require $baseDir . '/views/footer.php';
         break;
 
-
     case '/create':
         require $baseDir . '/views/header.php';
         require $baseDir . '/views/create.php';
         require $baseDir . '/views/footer.php';
         break;
-
 
     case '/create-artist':
         $newArtist = $artistModel->create([
@@ -55,6 +55,22 @@ switch ($url) {
         header('Location: /?id=' . $newArtist);
         break;
 
+    case '/create_artwork':
+        $allArtists = $artistModel->getAll();
+        require $baseDir . '/views/header.php';
+        require $baseDir . '/views/create_artwork.php';
+        require $baseDir . '/views/footer.php';
+        break;
+
+    case '/add_artwork':
+        $newArtwork = $artworkModel->create([
+            'artist_id' => $_POST['artist_id'],
+            'name' => $_POST['name'],
+            'creation_date' => $_POST['creation_date'],
+            'artwork_url' => $_POST['artwork_url']
+        ]);
+        header('Location: /?id=' . $newArtwork);
+        break;
 
     case '/update':
         $oneArtist = $artistModel->getById($_GET['id']);
@@ -62,7 +78,6 @@ switch ($url) {
         require $baseDir . '/views/update.php';
         require $baseDir . '/views/footer.php';
         break;
-
 
     case '/update-artist':
         $updateArtist = $artistModel->update($_POST['id'], [
@@ -74,12 +89,10 @@ switch ($url) {
         header('Location: /?id=' . $updateArtist);
         break;
 
-
     case '/delete':
         $deleteArtist = $artistModel->delete($_GET['id']);
         header('Location: /?id=' . $deleteArtist);
         break;
-
 
     default:
         header('HTTP/1.0 404 Not Found');

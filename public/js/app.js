@@ -75,6 +75,39 @@ $(document).ready(function () {
             );
         }*/
     });
+    $("#create-artwork").on("submit", function (e) {
+        var valid = true;
+
+
+//Nollställ formuläret
+        $("#error-message").hide();
+        fields.removeClass("error");
+
+        //Gå igenom fälten och se om de ät ifyllda
+        fields.each(function() {
+            var fieldValue = $.trim($(this).val());
+            if (fieldValue === "") {
+                valid = false;
+                $(this).addClass("error");
+            }
+        });
+
+
+        //Skicka inte formuläret om inte alla fält är ifyllda
+        if (!valid) {
+            e.preventDefault();
+            $("#error-message").show();
+        }/*
+         else {
+         $.post("/create-artist",
+         $(this).serialize(),
+         function (response) {
+         alert("Konstnären har sparats!");
+         window.location = "/";
+         }
+         );
+         }*/
+    });
 });
 
 /*
