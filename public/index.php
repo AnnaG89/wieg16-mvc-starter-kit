@@ -11,17 +11,17 @@ $baseDir = __DIR__ . '/..';
 require $baseDir . '/vendor/autoload.php';
 
 // Ladda konfigurationsdata
-$config = require $baseDir. '/config/config.php';
+$config = require $baseDir . '/config/config.php';
 
 // Normalisera url-sökvägar
-$path = function($uri) {
+$path = function ($uri) {
     $uri = ($uri == '/') ? $uri : rtrim($uri, '/');
     $uri = explode('?', $uri);
     $uri = array_shift($uri);
-	return $uri;
+    return $uri;
 };
 
-$dsn = "mysql:host=".$config['host'].";dbname=".$config['db'].";charset=".$config['charset'];
+$dsn = "mysql:host=" . $config['host'] . ";dbname=" . $config['db'] . ";charset=" . $config['charset'];
 $pdo = new PDO($dsn, $config['user'], $config['password'], $config['options']);
 
 $db = new Database($pdo);
@@ -33,7 +33,15 @@ $artworkModel = new \App\Models\ArtworkModel($db);
 switch ($url) {
 
     case '/':
+        $artistData = [];
         $allArtists = $artistModel->getAll();
+        $artists = $artistModel->getAll();
+        foreach ($artists as $artist) {
+            $artistData[] = [
+                'artist' => $artist,
+                'artworks' => $artistModel->getRelatedArtworks($artist['id'])
+            ];
+        }
         require $baseDir . '/views/header.php';
         require $baseDir . '/views/index.php';
         require $baseDir . '/views/footer.php';
@@ -41,11 +49,11 @@ switch ($url) {
 
     case '/create':
         require $baseDir . '/views/header.php';
-        require $baseDir . '/views/create.php';
+        require $baseDir . '/views/create_artist.php';
         require $baseDir . '/views/footer.php';
         break;
 
-    case '/create-artist':
+    case '/create_artist':
         $newArtist = $artistModel->create([
             'name' => $_POST['fname'],
             'birthyear' => $_POST['fbirthyear'],
@@ -72,10 +80,31 @@ switch ($url) {
         header('Location: /?id=' . $newArtwork);
         break;
 
+
+    case '/artworks':
+        $artworkData = [];
+        $artwork = $artworkModel->getAll();
+        $artists = $artistModel->getAll();
+        foreach ($artists as $artist) {
+            $artworks = $artistModel->getRelatedArtworks($artist['id']);
+            var_dump($artworks);
+            die();
+        }
+        foreach ($artwork as $item) {
+            $artworkData[] = [
+                'artwork' => $item,
+                'artist' => $artistModel->getById($item['artist_id']),
+            ];
+        }
+        require $baseDir . '/views/header.php';
+        require $baseDir . '/views/index.php';
+        require $baseDir . '/views/footer.php';
+        break;
+
     case '/update':
         $oneArtist = $artistModel->getById($_GET['id']);
         require $baseDir . '/views/header.php';
-        require $baseDir . '/views/update.php';
+        require $baseDir . '/views/update_artist.php';
         require $baseDir . '/views/footer.php';
         break;
 
@@ -89,9 +118,30 @@ switch ($url) {
         header('Location: /?id=' . $updateArtist);
         break;
 
+    case '/update_artwork_view':
+        $oneArtwork = $artworkModel->getById($_GET['id']);
+        require $baseDir . '/views/header.php';
+        require $baseDir . '/views/update_artwork.php';
+        require $baseDir . '/views/footer.php';
+        break;
+
+    case '/update_artwork':
+        $updateArtwork = $artworkModel->update($_POST['id'], [
+            'name' => $_POST['name'],
+            'creation_date' => $_POST['creation_date'],
+            'artwork_url' => $_POST['artwork_url']
+        ]);
+        header('Location: /?id=' . $updateArtwork);
+        break;
+
     case '/delete':
         $deleteArtist = $artistModel->delete($_GET['id']);
         header('Location: /?id=' . $deleteArtist);
+        break;
+
+    case '/delete_artwork':
+        $deleteArtwork = $artworkModel->delete($_GET['id']);
+        header('Location: /?id=' . $deleteArtwork);
         break;
 
     default:

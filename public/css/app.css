@@ -15,3 +15,11 @@
 .flex-container{
 	display: inline;
 }
+.left{
+	float: left;
+	width: 50px;
+}
+.right{
+	float: right;
+	width: 50px;
+}

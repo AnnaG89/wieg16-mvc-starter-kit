@@ -23,7 +23,7 @@
 
                 <div class="form-group">
                     <label>Tillverkningsår: </label>
-                    <input type="text" name="creation_date" class="form-control">
+                    <input type="date" name="creation_date" class="form-control">
                 </div>
 
                 <div class="form-group">
@@ -34,6 +34,7 @@
                 <p style="display:none;" id="error-message">Du måste fylla i alla formulärfält!</p>
                 <button type="submit" href="index.php" class="btn btn-default">Lägg till</button>
             </form>
+            <a role="button" href="/" class="btn btn-default">Avbryt</a>
         </div>
     </div>
 </div>

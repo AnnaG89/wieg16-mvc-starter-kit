@@ -14,6 +14,10 @@ class Database{
         $this->pdo = $pdo;
     }
 
+    public function getPdo() {
+        return $this->pdo;
+    }
+
     /*
     * @param integer $id
     * @return Model

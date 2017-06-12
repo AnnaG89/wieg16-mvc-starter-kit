@@ -24,4 +24,8 @@ class ArtistModel extends Model {
     {
         $this->name = $name;
     }*/
+
+    public function getRelatedArtworks($id) {
+        return $this->getRelated('artwork', 'artist_id', $id);
+    }
 }

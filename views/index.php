@@ -6,36 +6,71 @@
             <!-- Example row of columns -->
             <div class="row">
                 <?php
-                foreach ($allArtists as $value):?>
+                foreach ($artistData as $value):?>
                     <div class="col-lg-4 text-center">
-                        <img class="img-circle" src="<?= $value['image_url'] ?>" alt="Generic placeholder image"
+                        <img class="img-circle" src="<?= $value['artist']['image_url'] ?>"
+                             alt="Generic placeholder image"
                              width="140" height="140">
-                        <h2><?= $value['name'] ?></h2>
+                        <h2><?= $value['artist']['name'] ?></h2>
                         <p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?= $value['id'] ?>">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#myModal<?= $value['artist']['id'] ?>">
                                 View details &raquo;</button>
                         </p>
                     </div><!-- /.col-lg-4 -->
 
-
-
                           <!-- Modal -->
-                    <div class="modal fade" id="myModal<?= $value['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal fade" id="myModal<?= $value['artist']['id'] ?>" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                                 aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel"><?= $value['name'] ?></h4>
+                                    <h4 class="modal-title" id="myModalLabel"><?= $value['artist']['name'] ?></h4>
                                 </div>
                                 <div class="modal-body">
-                                            <img class="img-circle" src="<?= $value['image_url'] ?>" width="140" height="140">
-                                            <h6>Födelseår: <?= $value['birthyear']?></h6>
-                                            <h6>Stad: <?= $value['city']?></h6>
+                                    <div style="display: flex; flex-direction: rox;">
+                                        <div style="flex-grow: 1;">
+                                            <img class="img-circle" src="<?= $value['artist']['image_url'] ?>"
+                                                 width="140"
+                                                 height="140">
+                                        </div>
+                                        <div style="flex-grow: 1;">
+                                            <p>Födelseår: <?= $value['artist']['birthyear'] ?></p>
+                                            <p>Stad: <?= $value['artist']['city'] ?></p>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+                                    <?php foreach ($value['artworks'] as $artwork) { ?>
+                                        <div style="display: flex; flex-direction: row">
+                                            <div style="flex-grow: 1;">
+                                                <p>Konstverk: <?= $artwork['name'] ?></p>
+                                                <p>Tillverkningsår: <?= $artwork['creation_date'] ?></p>
+                                            </div>
+                                            <div style="flex-grow: 1;">
+                                                <img src="<?= $artwork['artwork_url'] ?>" width="140" height="140">
+                                            </div>
+                                            <div>
+                                                <a class='btn btn-primary btn-sm' href='/delete_artwork?id=<?= $artwork['id'] ?>'
+                                                   role='button'>Ta bort konstverk</a>
+                                                <hr style="margin: 10px;">
+                                                <a class='btn btn-primary btn-sm'
+                                                   href='/update_artwork_view?id=<?= $artwork['id'] ?>'
+                                                   role='button'>Ändra</a>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    <?php } ?>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <a class="btn btn-primary btn-sm" href="/create_artwork?id=<?= $value['artist']['id'] ?>" role="button">Lägg till konstverk</a>
+                                    <a class='btn btn-primary btn-sm' href='/update?id=<?= $value['artist']['id'] ?>'
+                                       role='button'>Uppdatera konstnär</a>
+                                    <a class='btn btn-primary btn-sm' href='/delete?id=<?= $value['artist']['id'] ?>' role='button'>Ta bort konstnär</a>
+                                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Stäng</button>
+
                                 </div>
                             </div>
                         </div>
@@ -53,15 +88,11 @@
     </div>
 
 
-
-
-
-
-            <!--
+    <!--
 
             <div class="row">
                 <?php
-            foreach ($allArtists as $value):?>
+    foreach ($allArtists as $value):?>
                     <tr>
                         <td><img style="max-height: 60px;" src=" <?= $value['image_url'] ?>"/></td>
                     </tr>
@@ -90,7 +121,7 @@
                         </thead>
                         <tbody>
                         <?php
-            foreach ($allArtists as $value):?>
+    foreach ($allArtists as $value):?>
                             <tr>
                                 <td><?= $value['id'] ?></td>
                                 <td><?= $value['name'] ?></td>

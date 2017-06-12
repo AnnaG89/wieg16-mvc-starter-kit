@@ -3,7 +3,6 @@
     <div class="container">
         <h1>Ändra.</h1>
 
-
         <div>
             <form action="/update-artist" method="post">
                 <div class="form-group">
@@ -25,11 +24,9 @@
                     <label>Bild url: </label>
                     <input type="text" name="uimg" class="form-control" value="<? echo $oneArtist['image_url'] ?>">
                 </div>
+
                 <button type="submit" class="btn btn-default">Ändra</button>
             </form>
-
-
-            <aside>hej </aside>
         </div>
     </div>
 </div>

@@ -10,11 +10,12 @@ namespace App\Models;
 
 
 use App\Database;
+use PDO;
 
 abstract class Model {
     protected $id;
     /*
-     * @var Database
+     * @var Database $db
      */
     private $db;
     protected $table = ' ';
@@ -53,5 +54,13 @@ abstract class Model {
 
     public function delete($id){
         return $this->db->delete($this->table, $id);
+    }
+
+    protected function getRelated($table, $linkColumn, $id) {
+        $pdo = $this->db->getPdo();
+        $stmt = $pdo->prepare("SELECT * FROM $table WHERE $linkColumn = :id");
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
