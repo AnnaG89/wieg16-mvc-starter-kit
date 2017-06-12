@@ -5,7 +5,10 @@
         <div>
             <form action="/update_artwork" method="post">
                 <div class="form-group">
-                    <input type="hidden" name="id" class="form-control" value="<?= $_GET['artist-id'] ?>">
+                    <input type="hidden" name="artist-id" class="form-control" value="<?= $_GET['artist-id'] ?>">
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="id" class="form-control" value="<?= $oneArtwork['id'] ?>">
                 </div>
 
                 <div class="form-group">
