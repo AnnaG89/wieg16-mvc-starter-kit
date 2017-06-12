@@ -1,25 +1,26 @@
-/* Move down content because we have a fixed navbar that is 50px tall */
 
-.error{
-	border: 1px solid red;
+.jumbotron {
+    background-color: #DAE1E7;
 }
-.done{
-	border: 1px solid green;
+
+.error {
+    border: 1px solid red;
 }
-.artists{
-	text-align: center;
+
+.done {
+    border: 1px solid green;
 }
-.artwork{
-	width: 200px;
+/*
+.flex-container {
+    display: inline;
 }
-.flex-container{
-	display: inline;
+
+.left {
+    float: left;
+    width: 50px;
 }
-.left{
-	float: left;
-	width: 50px;
-}
-.right{
-	float: right;
-	width: 50px;
-}
+
+.right {
+    float: right;
+    width: 50px;
+}*/

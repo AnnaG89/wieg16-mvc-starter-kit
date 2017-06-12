@@ -13,11 +13,11 @@
                              width="140" height="140">
                         <h2><?= $value['artist']['name'] ?></h2>
                         <p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                            <button type="button" class="btn btn-default" data-toggle="modal"
                                     data-target="#myModal<?= $value['artist']['id'] ?>">
-                                View details &raquo;</button>
+                                Se mer &raquo;</button>
                         </p>
-                    </div><!-- /.col-lg-4 -->
+                    </div>
 
                           <!-- Modal -->
                     <div class="modal fade" id="myModal<?= $value['artist']['id'] ?>" tabindex="-1" role="dialog"
@@ -46,18 +46,17 @@
                                     <?php foreach ($value['artworks'] as $artwork) { ?>
                                         <div style="display: flex; flex-direction: row">
                                             <div style="flex-grow: 1;">
-                                                <p>Konstverk: <?= $artwork['name'] ?></p>
-                                                <p>Tillverkningsår: <?= $artwork['creation_date'] ?></p>
+                                                <p>Namn: <?= $artwork['name'] ?></p>
+                                                <p>Tillverkningsdatum: <?= $artwork['creation_date'] ?></p>
                                             </div>
                                             <div style="flex-grow: 1;">
                                                 <img src="<?= $artwork['artwork_url'] ?>" width="140" height="140">
                                             </div>
                                             <div>
-                                                <a class='btn btn-primary btn-sm' href='/delete_artwork?id=<?= $artwork['id'] ?>'
+                                                <a class='btn btn-default btn-sm' href='/delete_artwork?id=<?= $artwork['id'] ?>'
                                                    role='button'>Ta bort konstverk</a>
                                                 <hr style="margin: 10px;">
-                                                <a class='btn btn-primary btn-sm'
-                                                   href='/update_artwork_view?id=<?= $artwork['id'] ?>'
+                                                <a class='btn btn-default btn-sm' href='/update_artwork_view?id=<?= $artwork['id'] ?>'
                                                    role='button'>Ändra</a>
                                             </div>
                                         </div>
@@ -65,11 +64,15 @@
                                     <?php } ?>
                                 </div>
                                 <div class="modal-footer">
-                                    <a class="btn btn-primary btn-sm" href="/create_artwork?id=<?= $value['artist']['id'] ?>" role="button">Lägg till konstverk</a>
-                                    <a class='btn btn-primary btn-sm' href='/update?id=<?= $value['artist']['id'] ?>'
+                                    <a class="btn btn-default btn-sm"
+                                       href="/create_artwork_view?id=<?= $value['artist']['id'] ?>" role="button">Lägg till
+                                        konstverk</a>
+                                    <a class='btn btn-default btn-sm' href='/update_artist_view?id=<?= $value['artist']['id'] ?>'
                                        role='button'>Uppdatera konstnär</a>
-                                    <a class='btn btn-primary btn-sm' href='/delete?id=<?= $value['artist']['id'] ?>' role='button'>Ta bort konstnär</a>
-                                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Stäng</button>
+                                    <a class='btn btn-default btn-sm' href='/delete_artist?id=<?= $value['artist']['id'] ?>'
+                                       role='button'>Ta bort konstnär</a>
+                                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Stäng
+                                    </button>
 
                                 </div>
                             </div>
@@ -81,62 +84,9 @@
             </div>
             <hr>
             <p class="text-center">
-                <a class="btn btn-primary btn-lg" href="/create" role="button">Lägg till konstnär</a>
-                <a class="btn btn-primary btn-lg" href="/create_artwork" role="button">Lägg till konstverk</a>
+                <a class="btn btn-default btn-lg" href="/create_artist_view" role="button">Lägg till konstnär</a>
+                <a class="btn btn-default btn-lg" href="/create_artwork_view" role="button">Lägg till konstverk</a>
             </p>
         </div>
     </div>
-
-
-    <!--
-
-            <div class="row">
-                <?php
-    foreach ($allArtists as $value):?>
-                    <tr>
-                        <td><img style="max-height: 60px;" src=" <?= $value['image_url'] ?>"/></td>
-                    </tr>
-                    <br>
-                    <tr>
-                      <td><?= $value['name'] ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </div>
-
-
-<br><br>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Namn</th>
-                            <th>Födelseår</th>
-                            <th>Stad</th>
-                            <th>Bild</th>
-                            <th>Ändra/Ta bort</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-    foreach ($allArtists as $value):?>
-                            <tr>
-                                <td><?= $value['id'] ?></td>
-                                <td><?= $value['name'] ?></td>
-                                <td><?= $value['birthyear'] ?></td>
-                                <td><?= $value['city'] ?></td>
-                                <td><img style="max-height: 60px;" src=" <?= $value['image_url'] ?>"/></td>
-                                <td>
-                                    <a class='btn btn-primary btn-sm' href='/delete?id=<?= $value['id'] ?>' role='button'>Ta Bort</a>
-                                    <a class='btn btn-primary btn-sm' href='/update?id=<?= $value['id'] ?>' role='button'>Ändra</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div> -->
-
+</div>

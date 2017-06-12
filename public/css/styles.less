@@ -1,7 +1,8 @@
-@background-color: #EDE6E4;
+@background-color: blue;
 @button-color: #A7AD9D;
 @button-border: none;
 @text-color: #756F74;
+
 
 aside{
   background-color: @background-color;
@@ -9,7 +10,7 @@ aside{
   padding: 15px;
 }
 .jumbotron{
-  background-color: @background-color;
+  background: @background-color;
   color: @text-color;
 }
 .btn{
@@ -18,39 +19,9 @@ aside{
   color: @text-color;
 }
 
-@circlesize: 50px;
 
-#circle{
-  background-color: #E6B4AC;
-  border-radius: 100%;
-  margin: 0 auto;
-  text-align: center;
-}
-
-#small-circle{
-  width: @circlesize;
-  height: @circlesize;
-  #circle
-}
-
-#big-circle{
-  width: @circlesize * 2;
-  height: @circlesize * 2;
-  #circle
-}
-#bigger-circle{
-  width: @circlesize * 3;
-  height: @circlesize * 3;
-  padding-top: 25px;
-  #circle
-}
-.png{
-
-  height: 20px;
-  width: 20px;
-}
 ul{
-  background-color: #E6B4AC;
+  background-color: @background-color;
   padding: 10px;
   list-style: none;
 
@@ -60,6 +31,8 @@ ul{
     margin: 10px 0;
   }
 }
+
 .flex-container{
   display: inline;
 }
+

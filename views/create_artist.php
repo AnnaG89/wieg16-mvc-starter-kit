@@ -3,7 +3,7 @@
     <div class="container">
         <h1>Lägg till en konstnär!</h1>
         <div>
-            <form id="create_artist" action="/create_artist" method="post">
+            <form id="create_artist_view" action="/create_artist" method="post">
                 <div class="form-group">
                     <label>Namn:</label>
                     <input type="text" name="fname" class="form-control">

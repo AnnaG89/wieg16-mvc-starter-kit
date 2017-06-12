@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Lägg till ett KONSTVERK!</h1>
         <div>
-            <form action="/add_artwork" method="post">
+            <form action="/create_artwork" method="post">
 
                 <div class="form-group">
                     <label>Konstnär:</label>

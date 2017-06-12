@@ -47,7 +47,7 @@ switch ($url) {
         require $baseDir . '/views/footer.php';
         break;
 
-    case '/create':
+    case '/create_artist_view':
         require $baseDir . '/views/header.php';
         require $baseDir . '/views/create_artist.php';
         require $baseDir . '/views/footer.php';
@@ -63,14 +63,14 @@ switch ($url) {
         header('Location: /?id=' . $newArtist);
         break;
 
-    case '/create_artwork':
+    case '/create_artwork_view':
         $allArtists = $artistModel->getAll();
         require $baseDir . '/views/header.php';
         require $baseDir . '/views/create_artwork.php';
         require $baseDir . '/views/footer.php';
         break;
 
-    case '/add_artwork':
+    case '/create_artwork':
         $newArtwork = $artworkModel->create([
             'artist_id' => $_POST['artist_id'],
             'name' => $_POST['name'],
@@ -101,7 +101,7 @@ switch ($url) {
         require $baseDir . '/views/footer.php';
         break;
 
-    case '/update':
+    case '/update_artist_view':
         $oneArtist = $artistModel->getById($_GET['id']);
         require $baseDir . '/views/header.php';
         require $baseDir . '/views/update_artist.php';
@@ -134,7 +134,7 @@ switch ($url) {
         header('Location: /?id=' . $updateArtwork);
         break;
 
-    case '/delete':
+    case '/delete_artist':
         $deleteArtist = $artistModel->delete($_GET['id']);
         header('Location: /?id=' . $deleteArtist);
         break;
